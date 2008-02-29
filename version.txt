@@ -1,13 +1,15 @@
-PureMVC Port to Java by Thomas Schuessler
-PureMVC - Copyright(c) 2006, 2007 Futurescale, Inc., Some rights reserved.
+PureMVC Port to Java by Thomas Schuessler, et al
+PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
 --------------------------------------------------------------------------
-Release Date: ??/??/??
+Release Date: 02/29/08
     Platform: Java
-     Version: 0 
-    Revision: 1
-      Author: ??? <thomas.schuessler@puremvc.org>
-     License: Creative Commons Attribution 3.0 United States License
+     Version: 1 
+    Revision: 0
+      Author: Thomas Schuessler <thomas.schuessler@puremvc.org>
+            : Michael Watzek <mwa.tech@spree.de>
+            : Philipp Hemker <phe@startext.de>
+            : Jan Grimmer <Jan.Grimmer@cimt-ag.de>
+     License: Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
-0.1 - Initial project structure created in repository - CLH
 
-1.0 - ???
+
