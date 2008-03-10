@@ -11,5 +11,9 @@ Release Date: 02/29/08
             : Jan Grimmer <Jan.Grimmer@cimt-ag.de>
      License: Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
+0.2 - Current version is partially compatible with AS3 version 2.0.1, 
+ 	  still needs onRegister/onRemove in Mediators and Proxies, and 
+ 	  a few other things.
 
+0.1 - Created initial file structure and added license and version files - CLH
 
