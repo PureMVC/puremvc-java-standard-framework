@@ -1,10 +1,10 @@
 PureMVC Port to Java by Thomas Schuessler, et al
 PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
 --------------------------------------------------------------------------
-Release Date: 02/29/08
+Release Date: 3/9/08
     Platform: Java
-     Version: 1 
-    Revision: 0
+     Version: 0
+    Revision: 2
       Author: Thomas Schuessler <thomas.schuessler@puremvc.org>
             : Michael Watzek <mwa.tech@spree.de>
             : Philipp Hemker <phe@startext.de>
@@ -13,7 +13,7 @@ Release Date: 02/29/08
 --------------------------------------------------------------------------
 0.2 - Current version is partially compatible with AS3 version 2.0.1, 
  	  still needs onRegister/onRemove in Mediators and Proxies, and 
- 	  a few other things.
+ 	  a few other things. Added JavaDocs.
 
 0.1 - Created initial file structure and added license and version files - CLH
 
