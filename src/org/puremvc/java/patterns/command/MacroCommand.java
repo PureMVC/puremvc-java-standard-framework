@@ -1,7 +1,8 @@
 /*
- * PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
- * Your reuse is governed by Creative Commons Attribution 3.0 License
- */
+   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
+   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+   Your reuse is governed by the Creative Commons Attribution 3.0 License
+*/
 
 package org.puremvc.java.patterns.command;
 
