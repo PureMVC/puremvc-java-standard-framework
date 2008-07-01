@@ -36,8 +36,7 @@
     <property name="build.lib" value="${build.dir}\lib"/>
     <property name="build.src" value="${build.dir}\${name}\src"/>
     <property name="build.dest" value="${build.dir}\${name}\classes"/>
-    <property name="build.doc" value="${build.dir}\doc"/>	   	
-    <property name="doc.apidocs" value="${build.doc}\api"/>	   	
+    <property name="build.doc" value="${basedir}\doc"/>	   	
     <property name="build.tests" value="${build.dir}\${name.tests}"/>
     <property name="build.tests.src" value="${build.tests}\src"/>
     <property name="build.tests.dest" value="${build.tests}\classes"/>
@@ -197,17 +196,17 @@
   <target name="build" depends="puremvc-java" description="builds the system"/>
 
   <!-- =================================================================== -->
-  <!-- Creates the API documentation in ./doc/api/                         -->
+  <!-- Creates the API documentation in ./doc                              -->
   <!-- =================================================================== -->
   <target name="doc" depends="prepare-puremvc-java, prepare-tests" 
           description="generates puremvc-java API docs">
 
-    <mkdir dir="${doc.apidocs}"/>
+    <mkdir dir="${build.doc}"/>
 
     <javadoc packagenames="${packages}"
              sourcepath="${build.src}"
     	     classpath="${lucene.lib}"
-             destdir="${doc.apidocs}"
+             destdir="${build.doc}"
              author="true"
              version="true"
            	 use="true"
@@ -315,7 +314,6 @@
   <target name="clean" depends="init, clean-dist" description="remove all build artifacts">
 
     <delete dir="${dist.dir}"/>
-    <delete dir="${doc.dir}"/>
 
   </target>
 
