@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.patterns.observer;
 
 import org.puremvc.java.patterns.facade.Facade;
@@ -38,7 +43,7 @@ import org.puremvc.java.patterns.facade.Facade;
  */
 public class Notifier
 {
-
+	// The Multiton Key for this app
 	/**
 	 * Local reference to the Facade Singleton
 	 */
@@ -59,9 +64,43 @@ public class Notifier
 	 *            the type of the notification (optional)
 	 */
 
-	public void sendNotification( String notificationName, Object body,
-			String type )
+	public void sendNotification( String notificationName, Object body,	String type )
 	{
-		this.facade.sendNotification( notificationName, body, type );
+		facade.sendNotification( notificationName, body, type );
 	}
+	
+	/**
+	 * Send an <code>INotification</code>s.
+	 * 
+	 * <P>
+	 * Keeps us from having to construct new notification instances in our
+	 * implementation code.
+	 * 
+	 * @param notificationName
+	 *            the name of the notiification to send
+	 * @param body
+	 *            the body of the notification (optional)
+	 */
+
+	public void sendNotification( String notificationName, Object body)
+	{
+		facade.sendNotification( notificationName, body);
+	}
+	
+	/**
+	 * Send an <code>INotification</code>s.
+	 * 
+	 * <P>
+	 * Keeps us from having to construct new notification instances in our
+	 * implementation code.
+	 * 
+	 * @param notificationName
+	 *            the name of the notiification to send
+	 */
+
+	public void sendNotification( String notificationName)
+	{
+		facade.sendNotification( notificationName);
+	}
+
 }

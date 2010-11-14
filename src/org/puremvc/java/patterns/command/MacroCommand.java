@@ -1,19 +1,23 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.patterns.command;
 
-import java.util.Enumeration;
+import java.util.Collection;
 import java.util.Vector;
 
 import org.puremvc.java.interfaces.ICommand;
 import org.puremvc.java.interfaces.INotification;
 import org.puremvc.java.patterns.observer.Notifier;
 
-// import org.puremvc.patterns.command.*;
 
 /**
  * A base <code>ICommand</code> implementation that executes other
@@ -41,14 +45,14 @@ import org.puremvc.java.patterns.observer.Notifier;
  * 
  * <P>
  * 
- * @see org.puremvc.java.core.controller.Controller Controller
+ * @see org.puremvc.java.core.Controller Controller
  * @see org.puremvc.java.patterns.observer.Notification Notification
  * @see org.puremvc.java.patterns.command.SimpleCommand SimpleCommand
  */
 public class MacroCommand extends Notifier implements ICommand
 {
 
-	private Vector subCommands = null;
+	private Collection<ICommand> subCommands = null;
 
 	/**
 	 * Constructor.
@@ -65,7 +69,7 @@ public class MacroCommand extends Notifier implements ICommand
 	 */
 	public MacroCommand( )
 	{
-		this.subCommands = new Vector();
+		this.subCommands = new Vector<ICommand>();
 		initializeMacroCommand();
 	}
 
@@ -105,9 +109,9 @@ public class MacroCommand extends Notifier implements ICommand
 	 *            a reference to the <code>Class</code> of the
 	 *            <code>ICommand</code>.
 	 */
-	protected void addSubCommand( Class commandClassRef )
+	protected void addSubCommand( ICommand commandClassRef )
 	{
-		this.subCommands.addElement( commandClassRef );
+		this.subCommands.add( commandClassRef );
 	}
 
 	/**
@@ -123,16 +127,7 @@ public class MacroCommand extends Notifier implements ICommand
 	 */
 	public void execute( INotification notification )
 	{
-
-		Class temp = null;
-		for (Enumeration enu = this.subCommands.elements(); enu.hasMoreElements();) {
-			temp = (Class) enu.nextElement();
-			try {
-				ICommand commandInstance = (ICommand) temp.newInstance();
-				commandInstance.execute( notification );
-			} catch (IllegalAccessException iae) {
-			} catch (InstantiationException ie) {
-			}
-		}
+		for( ICommand command : subCommands )
+			command.execute( notification );
 	}
 }

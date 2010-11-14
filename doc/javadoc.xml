@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="." destdir="" doctitle="PureMVC for Java" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="org.puremvc.java.core,org.puremvc.java.interfaces,org.puremvc.java.patterns.proxy,org.puremvc.java.patterns.facade,org.puremvc.java.patterns.command,org.puremvc.java.patterns.mediator,org.puremvc.java.patterns.observer" source="1.6" sourcepath="../src" splitindex="true" use="true" version="true"/>
+    </target>
+</project>

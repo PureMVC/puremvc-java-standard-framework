@@ -1,94 +1,35 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.patterns.facade;
 
-import org.puremvc.java.core.controller.Controller;
-import org.puremvc.java.core.model.Model;
-import org.puremvc.java.core.view.View;
+import org.puremvc.java.core.Controller;
+import org.puremvc.java.core.Model;
+import org.puremvc.java.core.View;
+import org.puremvc.java.interfaces.ICommand;
 import org.puremvc.java.interfaces.IFacade;
 import org.puremvc.java.interfaces.IMediator;
 import org.puremvc.java.interfaces.INotification;
 import org.puremvc.java.interfaces.IProxy;
 import org.puremvc.java.patterns.observer.Notification;
 
-;
-
 /**
  * A base Singleton <code>IFacade</code> implementation.
  * 
- * <P>
- * In PureMVC, the <code>Facade</code> class assumes these responsibilities:
- * <UL>
- * <LI>Initializing the <code>Model</code>, <code>View</code> and
- * <code>Controller</code> Singletons.</LI>
- * <LI>Providing all the methods defined by the <code>IModel, 
- * IView, & IController</code>
- * interfaces.</LI>
- * <LI>Providing the ability to override the specific <code>Model</code>,
- * <code>View</code> and <code>Controller</code> Singletons created.</LI>
- * <LI>Providing a single point of contact to the application for registering
- * <code>Commands</code> and notifying <code>Observers</code></LI>
- * </UL>
- * <P>
- * Example usage: <listing> import org.puremvc.patterns.facade.&lowast;;
- * 
- * import com.me.myapp.model.~~; import com.me.myapp.view.~~; import
- * com.me.myapp.controller.~~;
- * 
- * public class MyFacade extends Facade { // Notification constants. The Facade
- * is the ideal // location for these constants, since any part // of the
- * application participating in PureMVC // Observer Notification will know the
- * Facade. public static const GO_COMMAND:String = "go"; // Override Singleton
- * Factory method public static function getInstance() : MyFacade { if (instance ==
- * null) instance = new MyFacade(); return instance as MyFacade; } // optional
- * initialization hook for Facade override public function initializeFacade() :
- * void { super.initializeFacade(); // do any special subclass initialization
- * here } // optional initialization hook for Controller override public
- * function initializeController() : void { // call super to use the PureMVC
- * Controller Singleton. super.initializeController(); // Otherwise, if you're
- * implmenting your own // IController, then instead do: // if ( controller !=
- * null ) return; // controller = MyAppController.getInstance(); // do any
- * special subclass initialization here // such as registering Commands
- * registerCommand( GO_COMMAND, com.me.myapp.controller.GoCommand ) } //
- * optional initialization hook for Model override public function
- * initializeModel() : void { // call super to use the PureMVC Model Singleton.
- * super.initializeModel(); // Otherwise, if you're implmenting your own //
- * IModel, then instead do: // if ( model != null ) return; // model =
- * MyAppModel.getInstance(); // do any special subclass initialization here //
- * such as creating and registering Model proxys // that don't require a facade
- * reference at // construction time, such as fixed type lists // that never
- * need to send Notifications. regsiterProxy( new USStateNamesProxy() ); //
- * CAREFUL: Can't reference Facade instance in constructor // of new Proxys from
- * here, since this step is part of // Facade construction! Usually, Proxys
- * needing to send // notifications are registered elsewhere in the app // for
- * this reason. } // optional initialization hook for View override public
- * function initializeView() : void { // call super to use the PureMVC View
- * Singleton. super.initializeView(); // Otherwise, if you're implmenting your
- * own // IView, then instead do: // if ( view != null ) return; // view =
- * MyAppView.getInstance(); // do any special subclass initialization here //
- * such as creating and registering Mediators // that do not need a Facade
- * reference at construction // time. registerMediator( new LoginMediator() ); //
- * CAREFUL: Can't reference Facade instance in constructor // of new Mediators
- * from here, since this is a step // in Facade construction! Usually, all
- * Mediators need // receive notifications, and are registered elsewhere in //
- * the app for this reason. } } </listing>
- * 
- * @see org.puremvc.java.core.model.Model Model
- * @see org.puremvc.java.core.view.View View
- * @see org.puremvc.java.core.controller.Controller Controller
- * @see org.puremvc.java.patterns.observer.Notification Notification
- * @see org.puremvc.java.patterns.mediator.Mediator Mediator
- * @see org.puremvc.java.patterns.proxy.Proxy Proxy
- * @see org.puremvc.java.patterns.command.SimpleCommand SimpleCommand
- * @see org.puremvc.java.patterns.command.MacroCommand MacroCommand
+ * @see org.puremvc.java.core.Model Model
+ * @see org.puremvc.java.core.View View
+ * @see org.puremvc.java.core.Controller Controller 
  */
 public class Facade implements IFacade
 {
-
 	/**
 	 * The Singleton instance of the Facade
 	 */
@@ -117,24 +58,19 @@ public class Facade implements IFacade
 	 * not call the constructor directly, but instead call the static Singleton
 	 * Factory method <code>Facade.getInstance()</code>
 	 * 
-	 * @throws Error
-	 *             Error if Singleton instance has already been constructed
-	 * 
 	 */
-	protected Facade( )
+	protected Facade()
 	{
-		if (instance != null) throw new RuntimeException("Facade already constructed");
 		initializeFacade();
 	}
 
 	/**
-	 * Initialize the Singleton <code>Facade</code> instance.
+	 * Initialize the Multiton <code>Facade</code> instance.
 	 * 
 	 * <P>
-	 * Called automatically by the constructor. Override in your subclass to do
-	 * any subclass specific initializations. Be sure to call
-	 * <code>super.initializeFacade()</code>, though.
-	 * </P>
+	 * Called automatically by the constructor. Override in your
+	 * subclass to do any subclass specific initializations. Be
+	 * sure to call <code>super.initializeFacade()</code>, though.</P>
 	 */
 	protected void initializeFacade( )
 	{
@@ -146,16 +82,14 @@ public class Facade implements IFacade
 	/**
 	 * Facade Singleton Factory method
 	 * 
-	 * @return the Singleton instance of the Facade
+	 * @return
+	 *		The Singleton instance of the Facade
 	 */
-	public synchronized static Facade getInstance( )
+	public synchronized static Facade getInstance()
 	{
-		if (instance == null) {
-			try {
-				instance = new Facade();
-			} catch (Exception e) {
-			}
-		}
+		if( instance == null )
+			instance = new Facade();
+
 		return instance;
 	}
 
@@ -176,12 +110,12 @@ public class Facade implements IFacade
 	 * method, then register <code>Command</code>s.
 	 * </P>
 	 */
-	protected void initializeController( )
+	protected void initializeController()
 	{
-		if (this.controller != null) {
+		if( controller != null )
 			return;
-		}
-		this.controller = Controller.getInstance();
+
+		controller = Controller.getInstance();
 	}
 
 	/**
@@ -208,12 +142,12 @@ public class Facade implements IFacade
 	 * their construction.
 	 * </P>
 	 */
-	protected void initializeModel( )
+	protected void initializeModel()
 	{
-		if (this.model != null) {
+		if( model != null )
 			return;
-		}
-		this.model = Model.getInstance();
+
+		model = Model.getInstance();
 	}
 
 	/**
@@ -240,12 +174,12 @@ public class Facade implements IFacade
 	 * reference to the <code>Facade</code> during their construction.
 	 * </P>
 	 */
-	protected void initializeView( )
+	protected void initializeView()
 	{
-		if (this.view != null) {
+		if( view != null )
 			return;
-		}
-		this.view = View.getInstance();
+
+		view = View.getInstance();
 	}
 
 	/**
@@ -255,12 +189,12 @@ public class Facade implements IFacade
 	 * @param noteName
 	 *            the name of the <code>INotification</code> to associate the
 	 *            <code>ICommand</code> with
-	 * @param commandClassRef
-	 *            a reference to the Class of the <code>ICommand</code>
+	 * @param command
+	 *            an instance of the <code>ICommand</code>
 	 */
-	public void registerCommand( String noteName, Class commandClassRef )
+	public void registerCommand( String noteName, ICommand command )
 	{
-		this.controller.registerCommand( noteName, commandClassRef );
+		controller.registerCommand( noteName, command );
 	}
 
 	/**
@@ -272,6 +206,16 @@ public class Facade implements IFacade
 		this.controller.removeCommand( notificationName );
 	}
 
+	/**
+	 * Check if a Command is registered for a given Notification 
+	 * 
+	 * @param notificationName
+	 * @return whether a Command is currently registered for the given <code>notificationName</code>.
+	 */
+	public boolean hasCommand( String notificationName)
+	{
+		return controller.hasCommand(notificationName);
+	}
 
 	/**
 	 * Register a <code>IMediator</code> with the <code>View</code>.
@@ -328,6 +272,29 @@ public class Facade implements IFacade
 		}
 		return null;
 	}
+	
+	/**
+	 * Check if a Proxy is registered
+	 * 
+	 * @param proxyName
+	 * @return whether a Proxy is currently registered with the given <code>proxyName</code>.
+	 */
+	public boolean hasProxy( String proxyName )
+	{
+		return model.hasProxy( proxyName );
+	}
+	
+	
+	/**
+	 * Check if a Mediator is registered or not
+	 * 
+	 * @param mediatorName
+	 * @return whether a Mediator is registered with the given <code>mediatorName</code>.
+	 */
+	public boolean hasMediator( String mediatorName )
+	{
+		return view.hasMediator( mediatorName );
+	}
 
 	/**
 	 * Retrieve an <code>IMediator</code> from the <code>View</code>.
@@ -360,7 +327,7 @@ public class Facade implements IFacade
 	 * <P>
 	 * Keeps us from having to construct new notification 
 	 * instances in our implementation code.
-	 * @param notificationName the name of the notiification to send
+	 * @param notificationName the name of the notification to send
 	 * @param body the body of the notification (optional)
 	 * @param type the type of the notification (optional)
 	 */ 
@@ -368,20 +335,44 @@ public class Facade implements IFacade
 	{
 		notifyObservers( new Notification( notificationName, body, type ) );
 	}
-
+	
 	/**
-	 * Notify <code>Observer</code>s.
+	 * Create and send an <code>INotification</code>.
 	 * 
-	 * @param notification
-	 *            the <code>INotification</code> to have the <code>View</code>
-	 *            notify <code>Observers</code> of.
-	 */
-	public void notifyObservers( INotification notification )
+	 * <P>
+	 * Keeps us from having to construct new notification 
+	 * instances in our implementation code.
+	 * @param notificationName the name of the notification to send
+	 * @param body the body of the notification (optional)
+	 */ 
+	public void sendNotification( String notificationName, Object body ) 
 	{
-		if (this.view != null) {
-			this.view.notifyObservers( notification );
-		}
+		sendNotification( notificationName, body, null );
+	}
+	
+	/**
+	 * Create and send an <code>INotification</code>.
+	 * 
+	 * <P>
+	 * Keeps us from having to construct new notification 
+	 * instances in our implementation code.
+	 * @param notificationName the name of the notification to send
+	 */ 
+	public void sendNotification( String notificationName ) 
+	{
+		sendNotification( notificationName, null, null );
 	}
 
-
+	/**
+	 * Notify <code>Observer</code>s of an <code>INotification</code>.
+	 * 
+	 * @param note
+	 *            the <code>INotification</code> to have the <code>View</code>
+	 *            notify observers of.
+	 */
+	public void notifyObservers( INotification note )
+	{
+		if( view != null)
+			view.notifyObservers( note );
+	}
 }

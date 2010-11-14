@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.interfaces;
 
 /**
@@ -36,10 +41,10 @@ public interface IController
 	 * 
 	 * @param notificationName
 	 *            the name of the <code>INotification</code>
-	 * @param commandClassRef
+	 * @param command
 	 *            the Class of the <code>ICommand</code>
 	 */
-	public void registerCommand( String notificationName, Class commandClassRef );
+	public void registerCommand( String notificationName, ICommand command );
 
 	/**
 	 * Execute the <code>ICommand</code> previously registered as the handler
@@ -60,4 +65,12 @@ public interface IController
 	 *            <code>ICommand</code> mapping for
 	 */
 	public void removeCommand( String notificationName );
+	
+	/**
+	 * Check if a Command is registered for a given Notification 
+	 * 
+	 * @param notificationName
+	 * @return whether a Command is currently registered for the given <code>notificationName</code>.
+	 */
+	public boolean hasCommand( String notificationName);
 }

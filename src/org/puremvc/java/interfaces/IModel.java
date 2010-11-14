@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.interfaces;
 
 /**
@@ -51,4 +56,12 @@ public interface IModel
 	 *            name of the <code>IProxy</code> instance to be removed.
 	 */
 	public IProxy removeProxy( String proxy );
+	
+	/**
+	 * Check if a Proxy is registered
+	 * 
+	 * @param proxyName
+	 * @return whether a Proxy is currently registered with the given <code>proxyName</code>.
+	 */
+	boolean hasProxy(String proxyName );
 }

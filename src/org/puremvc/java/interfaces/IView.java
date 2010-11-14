@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.interfaces;
 
 /**
@@ -103,4 +108,12 @@ public interface IView
 	 *            name of the <code>IMediator</code> instance to be removed.
 	 */
 	public IMediator removeMediator( String mediatorName );
+	
+	/**
+	 * Check if a Mediator is registered or not
+	 * 
+	 * @param mediatorName
+	 * @return whether a Mediator is registered with the given <code>mediatorName</code>.
+	 */
+	public boolean hasMediator( String mediatorName );
 }

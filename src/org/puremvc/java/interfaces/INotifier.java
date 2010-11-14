@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.interfaces;
 
 /**
@@ -50,6 +55,33 @@ public interface INotifier
 	 * @param type
 	 *            the type of the notification (optional)
 	 */
-	public void sendNotification( String notificationName, Object body,
-			String type );
+	public void sendNotification( String notificationName, Object body,	String type );
+	
+	/**
+	 * Send a <code>INotification</code>.
+	 * 
+	 * <P>
+	 * Convenience method to prevent having to construct new notification
+	 * instances in our implementation code.
+	 * </P>
+	 * 
+	 * @param notificationName
+	 *            the name of the notification to send
+	 * @param body
+	 *            the body of the notification (optional)
+	 */
+	public void sendNotification( String notificationName, Object body );
+	
+	/**
+	 * Send a <code>INotification</code>.
+	 * 
+	 * <P>
+	 * Convenience method to prevent having to construct new notification
+	 * instances in our implementation code.
+	 * </P>
+	 * 
+	 * @param notificationName
+	 *            the name of the notification to send
+	 */
+	public void sendNotification( String notificationName );
 }

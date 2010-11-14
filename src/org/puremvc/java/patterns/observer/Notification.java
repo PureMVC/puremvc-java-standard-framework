@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.patterns.observer;
 
 import org.puremvc.java.interfaces.INotification;
@@ -71,15 +76,43 @@ public class Notification implements INotification
 		this.body = body;
 		this.type = type;
 	}
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param name
+	 *            name of the <code>Notification</code> instance. (required)
+	 */
+	public Notification( String name )
+	{
+		this.name = name;
+		body = null;
+		type = null;
+	}
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param name
+	 *            name of the <code>Notification</code> instance. (required)
+	 * @param body
+	 *            the <code>Notification</code> body. (optional)
+	 */
+	public Notification( String name, Object body )
+	{
+		this.name = name;
+		this.body = body;
+		type = null;
+	}
 
 	/**
 	 * Get the body of the <code>Notification</code> instance.
 	 * 
 	 * @return the body object.
 	 */
-	public Object getBody( )
+	public Object getBody()
 	{
-		return this.body;
+		return body;
 	}
 
 	/**
@@ -87,9 +120,9 @@ public class Notification implements INotification
 	 * 
 	 * @return the name of the <code>Notification</code> instance.
 	 */
-	public String getName( )
+	public String getName()
 	{
-		return this.name;
+		return name;
 	}
 
 	/**
@@ -97,9 +130,9 @@ public class Notification implements INotification
 	 * 
 	 * @return the type
 	 */
-	public String getType( )
+	public String getType()
 	{
-		return this.type;
+		return type;
 	}
 
 	/**
@@ -127,19 +160,19 @@ public class Notification implements INotification
 	 * @return the string representation of the <code>Notification</code>
 	 *         instance.
 	 */
-	public String toString( )
+	public String toString()
 	{
-		String result = "Notification Name: " + getName() + " Body: ";
-		if (this.body != null) {
-			result += this.body.toString() + " type: ";
-		} else {
-			result += "null type: ";
-		}
-		if (this.type != null) {
-			result += result;
-		} else {
+		String result = "Notification Name: " + getName() + " Body:";
+		if( body != null )
+			result += body.toString() + " Type:";
+		else
+			result += "null Type:";
+		
+		if( type != null )
+			result += type;
+		else
 			result += "null ";
-		}
+		
 		return result;
 	}
 }

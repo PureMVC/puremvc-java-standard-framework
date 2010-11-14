@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.patterns.observer;
 
 import org.puremvc.java.interfaces.IFunction;
@@ -28,7 +33,7 @@ import org.puremvc.java.interfaces.IObserver;
  * <LI>Provide a method for notifying the interested object.</LI>
  * </UL>
  * 
- * @see org.puremvc.java.core.view.View View
+ * @see org.puremvc.java.core.View View
  * @see org.puremvc.java.patterns.observer.Notification Notification
  */
 public class Observer implements IObserver
@@ -53,8 +58,8 @@ public class Observer implements IObserver
 	 */
 	public Observer( IFunction notify, Object context )
 	{
-		this.setNotifyContext( context );
-		this.setNotifyMethod( notify );
+		setNotifyContext( context );
+		setNotifyMethod( notify );
 	}
 
 	/**
@@ -67,7 +72,7 @@ public class Observer implements IObserver
 	 */
 	public boolean compareNotifyContext( Object object )
 	{
-		return this.context == object;
+		return context == object;
 	}
 
 	/**
@@ -79,7 +84,7 @@ public class Observer implements IObserver
 	 */
 	public void notifyObserver( INotification notification )
 	{
-		this.getNotifyMethod().onNotification( notification );
+		getNotifyMethod().onNotification( notification );
 	}
 
 	/**
@@ -90,7 +95,7 @@ public class Observer implements IObserver
 	 */
 	public void setNotifyContext( Object notifyContext )
 	{
-		this.context = notifyContext;
+		context = notifyContext;
 	}
 
 	/**
@@ -106,7 +111,7 @@ public class Observer implements IObserver
 	 */
 	public void setNotifyMethod( IFunction notifyMethod )
 	{
-		this.notify = notifyMethod;
+		notify = notifyMethod;
 	}
 
 	/**
@@ -116,7 +121,7 @@ public class Observer implements IObserver
 	 */
 	public IFunction getNotifyMethod( )
 	{
-		return this.notify;
+		return notify;
 	}
 
 	/**
@@ -127,7 +132,7 @@ public class Observer implements IObserver
 	 */
 	public Object getNotifyContext( )
 	{
-		return this.context;
+		return context;
 	}
 
 }

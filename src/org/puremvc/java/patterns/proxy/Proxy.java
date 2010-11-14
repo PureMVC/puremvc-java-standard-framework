@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.patterns.proxy;
 
 import org.puremvc.java.interfaces.IProxy;
@@ -31,7 +36,7 @@ import org.puremvc.java.patterns.observer.Notifier;
  * sent when the <code>Proxy</code> has retrieved the data from the service.
  * </P>
  * 
- * @see org.puremvc.java.core.model.Model Model
+ * @see org.puremvc.java.core.Model Model
  */
 public class Proxy extends Notifier implements IProxy
 {
@@ -56,12 +61,24 @@ public class Proxy extends Notifier implements IProxy
 			this.data = data;
 		}
 	}
+	
+	/**
+	 * Constructor
+	 * @param proxyName
+	 *		Name of the <code>Proxy</code>
+	 */
+	public Proxy( String proxyName )
+	{
+		if( proxyName != null)
+			this.proxyName = proxyName;
+
+	}
 
 	/**
 	 * Get the proxy name
 	 * @return the proxy name
 	 */
-	public String getProxyName( )
+	public String getProxyName()
 	{
 		return this.proxyName;
 	}
@@ -83,4 +100,14 @@ public class Proxy extends Notifier implements IProxy
 	{
 		return this.data;
 	}
+	
+	/**
+	 * Called by the Model when the Proxy is registered
+	 */ 
+	public void onRegister(){}
+	
+	/**
+	 * Called by the Model when the Proxy is removed
+	 */ 
+	public void onRemove(){}
 }

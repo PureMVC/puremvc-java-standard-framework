@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.interfaces;
 
 /**
@@ -79,7 +84,7 @@ package org.puremvc.java.interfaces;
  * 
  * @see org.puremvc.java.interfaces.INotification INotification
  */
-public interface IMediator
+public interface IMediator extends INotifier
 {
 
 	/**
@@ -100,6 +105,7 @@ public interface IMediator
 	 * Set the <code>IMediator</code>'s view component.
 	 * 
 	 * @param viewComponent
+	 *		The view component
 	 */
 	public void setViewComponent( Object viewComponent );
 
@@ -118,4 +124,14 @@ public interface IMediator
 	 *            the <code>INotification</code> to be handled
 	 */
 	public void handleNotification( INotification notification );
+	
+	/**
+	 * Called by the View when the Mediator is registered
+	 */ 
+	public void onRegister();
+
+	/**
+	 * Called by the View when the Mediator is removed
+	 */ 
+	void onRemove();
 }

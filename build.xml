@@ -1,18 +1,17 @@
-<project name="puremvc-java" default="buildinfo" basedir=".">
+<project name="puremvc-java" default="all" basedir=".">
 
   <!-- =================================================================== -->
   <!-- Initialization target                                               -->
   <!-- =================================================================== -->
-  <target name="init">
+  <target name="init" depends="buildinfo">
     <tstamp>
     	<format property="year" pattern="yyyy" locale="en"/>
     </tstamp>
   	
-    <property file="build.properties"/>
     <property name="Name" value="PureMVC"/>
     <property name="name" value="${ant.project.name}"/>
     <property name="name.tests" value="puremvc-java-tests"/>
-    <property name="version" value="0.3"/>
+    <property name="version" value="1.0"/>
 
     <property name="build.compiler" value="modern"/>
     <property name="debug" value="off"/>
@@ -21,42 +20,43 @@
     <property name="packages" value="org.*"/>
 
     <!-- Define the source directories -->
-    <property name="doc.dir" value="${basedir}\doc"/>
-    <property name="src.dir" value="${basedir}\src"/>
-    <property name="lib.dir" value="${basedir}\lib"/>
-    <property name="tests.dir" value="d:\DEVELOPMENT\PureMVC\tests\PureMVC_Java_UnitTests\trunk\src"/>
+    <property name="doc.dir" value="${basedir}/doc"/>
+    <property name="src.dir" value="${basedir}/src"/>
+    <property name="lib.dir" value="${basedir}/lib"/>
+    <property name="tests.dir" value="../PureMVC_Java_Test/"/>
+    <property name="tests.src" value="${tests.dir}/src"/>
 
     <!-- Define path to required libraries -->
-   <property name="junit" value="junit-4.3.1.jar" />
-   <property name="junit.dir" value="${basedir}\lib" />
-   <property name="junit.lib" value="${junit.dir}\${junit}"/>
+	<property name="junit" value="junit-4.8.2.jar" />
+	<property name="junit.dir" value="${tests.dir}/lib" />
+	<property name="junit.lib" value="${junit.dir}/${junit}"/>
   	
     <!-- Define the source build directories -->
-    <property name="build.dir" value="${basedir}\build"/>
-    <property name="build.lib" value="${build.dir}\lib"/>
-    <property name="build.src" value="${build.dir}\${name}\src"/>
-    <property name="build.dest" value="${build.dir}\${name}\classes"/>
-    <property name="build.doc" value="${basedir}\doc"/>	   	
-    <property name="build.tests" value="${build.dir}\${name.tests}"/>
-    <property name="build.tests.src" value="${build.tests}\src"/>
-    <property name="build.tests.dest" value="${build.tests}\classes"/>
-    <property name="junitresults" value="${build.tests}\junitoutput"/>
-    <property name="codecoverage.dir" value="${build.dir}\coverage"/>
-    <property name="build.dist" value="${build.dir}\dist"/>
-    <property name="source-dist.dir" value="${build.dist}\${name}-${version}-src\"/>
-    <property name="bin-dist.dir" value="${build.dist}\${name}-${version}-bin\"/>    
-    <property name="doc-dist.dir" value="${build.dist}\${name}-${version}-doc\"/>    
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="build.lib" value="${build.dir}/lib"/>
+    <property name="build.src" value="${build.dir}/${name}/src"/>
+    <property name="build.dest" value="${build.dir}/${name}/classes"/>
+    <property name="build.doc" value="${basedir}/doc"/>	   	
+    <property name="build.tests" value="${build.dir}/${name.tests}"/>
+    <property name="build.tests.src" value="${build.tests}/src"/>
+    <property name="build.tests.dest" value="${build.tests}/classes"/>
+    <property name="junitresults" value="${build.tests}/junitoutput"/>
+    <property name="codecoverage.dir" value="${build.dir}/coverage"/>
+    <property name="build.dist" value="${build.dir}/dist"/>
+    <property name="source-dist.dir" value="${build.dist}/${name}-${version}-src/"/>
+    <property name="bin-dist.dir" value="${build.dist}/${name}-${version}-bin/"/>    
+    <property name="doc-dist.dir" value="${build.dist}/${name}-${version}-doc/"/>    
   	
     
     <!-- Define the distribution directories -->
-    <property name="dist.dir" value="${basedir}\dist"/>
-    <property name="reports" value="${basedir}\reports"/>
+    <property name="dist.dir" value="${basedir}/dist"/>
+    <property name="reports" value="${basedir}/reports"/>
   </target>
 
   <!-- =================================================================== -->
   <!-- Help on usage                                                       -->
   <!-- =================================================================== -->
-  <target name="buildinfo" depends="init" description="displays build environment information">
+  <target name="buildinfo" description="displays build environment information">
     <echo message=""/>
     <echo message="Build context for project ${ant.project.name} version ${version} described" />
     <echo message='below.  For a list of targets use "ant -projecthelp".'/>
@@ -85,11 +85,6 @@
     <mkdir dir="${build.dir}"/>
     <mkdir dir="${build.lib}"/>
     <mkdir dir="${reports}"/>
-
-    <copy todir="${build.lib}">
-      <fileset dir="${lib.dir}"/>
-    </copy>
-
   </target>
 
   <!-- =================================================================== -->
@@ -98,6 +93,7 @@
   <target name="prepare-puremvc-java" depends="prepare">
     <mkdir dir="${build.src}"/>
     <mkdir dir="${build.dest}"/>
+    <mkdir dir="${build.lib}"/>
    
     <copy todir="${build.src}">
       <fileset dir="${src.dir}"/>
@@ -113,7 +109,11 @@
     <mkdir dir="${build.tests.dest}"/>
 
     <copy todir="${build.tests.src}">
-      <fileset dir="${tests.dir}"/>
+      <fileset dir="${tests.src}"/>
+    </copy>
+	
+    <copy todir="${build.lib}">
+      <fileset file="${junit.lib}"/>
     </copy>
         
   </target>
@@ -152,7 +152,7 @@
   <!-- =================================================================== -->
   <target name="puremvc-java" depends="compile-puremvc-java" description="builds puremvc-java.jar">
 
-    <jar jarfile="${build.dir}/${name}.jar"
+    <jar jarfile="${build.dir}/${name}-${version}.jar"
          basedir="${build.dest}"
          includes="**"/>
 
@@ -334,9 +334,9 @@
 
   	<fixcrlf srcdir="${src.dir}" eol="lf" eof="remove"
   		tablength="4" tab="remove" includes="**/*.java"	/>
-  	<fixcrlf srcdir="${tests.dir}" eol="lf" eof="remove"
+  	<fixcrlf srcdir="${tests.src}" eol="lf" eof="remove"
   		tablength="4" tab="remove" includes="**/*.java"	/>
-  	<fixcrlf srcdir="${tests.dir}" eol="lf" eof="remove"
+  	<fixcrlf srcdir="${tests.src}" eol="lf" eof="remove"
   		tablength="4" tab="remove" includes="**/*.java"	/>
 
   </target>

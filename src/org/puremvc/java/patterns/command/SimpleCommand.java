@@ -1,9 +1,14 @@
 /*
-   PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
-   PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
-   Your reuse is governed by the Creative Commons Attribution 3.0 License
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ 
+ Adapted from sources of thoses different authors :
+ 	Donald Stinchfield <donald.stinchfield@puremvc.org>, et all
+ 	Ima OpenSource <opensource@ima.eu>
+ 	Anthony Quinault <anthony.quinault@puremvc.org>
+ 
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 */
-
 package org.puremvc.java.patterns.command;
 
 import org.puremvc.java.interfaces.ICommand;
@@ -18,7 +23,7 @@ import org.puremvc.java.patterns.observer.Notifier;
  * business logic will handle the <code>INotification</code>.
  * </P>
  * 
- * @see org.puremvc.java.core.controller.Controller Controller
+ * @see org.puremvc.java.core.Controller Controller
  * @see org.puremvc.java.patterns.observer.Notification Notification
  * @see org.puremvc.java.patterns.command.MacroCommand MacroCommand
  */

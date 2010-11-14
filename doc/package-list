@@ -1,6 +1,4 @@
-org.puremvc.java.core.controller
-org.puremvc.java.core.model
-org.puremvc.java.core.view
+org.puremvc.java.core
 org.puremvc.java.interfaces
 org.puremvc.java.patterns.command
 org.puremvc.java.patterns.facade

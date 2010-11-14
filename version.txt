@@ -1,27 +1,31 @@
- PureMVC Java Port by Donald Stinchfield <donald.stinchfield@puremvc.org>, et al.
- PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved. 
-
- Your reuse is governed by the Creative Commons Attribution 3.0 License 
-PureMVC Port to Java by Thomas Schuessler, et al
-PureMVC - Copyright(c) 2006-08 Futurescale, Inc., Some rights reserved.
+ PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
+ PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ Your reuse is governed by the Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
-Release Date: 6/30/2008
+Release Date: 11/11/2010
     Platform: Java
-     Version: 0
-    Revision: 3
-      Author: Donald Stinchfield <donald.stinchfield@puremvc.org>
+     Version: 1
+    Revision: 0
+        Author:  Adapted from sources of different authors
+            : Frederic Saunier <frederic.saunier@puremvc.org>
+            : Donald Stinchfield <donald.stinchfield@puremvc.org>
             : Thomas Schuessler <thomas.schuessler@puremvc.org>
             : Michael Watzek <mwa.tech@spree.de>
             : Philipp Hemker <phe@startext.de>
             : Jan Grimmer <Jan.Grimmer@cimt-ag.de>
      License: Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
+1.0 - The framework has been adapted from the multicore version. It fixes the
+      lack off onRegister, onRemove methods of Mediators and Proxy classes and
+      improves GWT compatibility. It also has been tested successfully against
+      Android 2.2. 
+
 0.3 - Junit tests from Futurescale have been added.  build.xml file was
       refactored to make easier to build modules.  This is mostly an
       administrative release
+      
 0.2 - Current version is partially compatible with AS3 version 2.0.1, 
  	  still needs onRegister/onRemove in Mediators and Proxies, and 
  	  a few other things. Added JavaDocs - CLH
 
 0.1 - Created initial file structure and added license and version files - CLH
-
