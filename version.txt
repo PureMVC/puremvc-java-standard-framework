@@ -16,7 +16,7 @@ Release Date: 11/11/2010
      License: Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
 1.0 - The framework has been adapted from the multicore version. It fixes the
-      lack off onRegister, onRemove methods of Mediators and Proxy classes and
+      lack of onRegister, onRemove methods of Mediators and Proxy classes and
       improves GWT compatibility. It also has been tested successfully against
       Android 2.2. 
 
