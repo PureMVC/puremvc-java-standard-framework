@@ -11,7 +11,7 @@
     <property name="Name" value="PureMVC"/>
     <property name="name" value="${ant.project.name}"/>
     <property name="name.tests" value="puremvc-java-tests"/>
-    <property name="version" value="1.0"/>
+    <property name="version" value="1.1"/>
 
     <property name="build.compiler" value="modern"/>
     <property name="debug" value="off"/>
@@ -23,7 +23,7 @@
     <property name="doc.dir" value="${basedir}/doc"/>
     <property name="src.dir" value="${basedir}/src"/>
     <property name="lib.dir" value="${basedir}/lib"/>
-    <property name="tests.dir" value="../PureMVC_Java_Test/"/>
+    <property name="tests.dir" value="../PureMVC_Java_SingleCoreTest/"/>
     <property name="tests.src" value="${tests.dir}/src"/>
 
     <!-- Define path to required libraries -->
@@ -140,10 +140,11 @@
 
     <javac srcdir="${build.tests.src}"
            destdir="${build.tests.dest}"
-		   classpath="${build.dir}/${name}.jar;${build.dir}/lib/${junit}"
+		   classpath="${build.dir}/${name}-${version}.jar;${build.dir}/lib/${junit}"
            debug="${debug}"
            deprecation="${deprecation}"
-           optimize="${optimize}"/>
+           optimize="${optimize}"
+	/>
 
   </target>
 
@@ -283,7 +284,7 @@
 
     <copy todir="${bin-dist.dir}">
       <fileset dir="${build.dir}">
-	<include name="${name}.jar"/>
+		<include name="${name}-${version}.jar"/>
       </fileset>
     </copy>
 
@@ -322,7 +323,7 @@
   <!-- =================================================================== -->
   <target name="clean-dist" depends="init" description="remove build artifacts">
 
-    <delete dir="${build.dir}"/>
+    <delete dir="${dist.dir}"/>
     <delete dir="${reports}"/>
 
   </target>
@@ -342,7 +343,7 @@
   </target>
 
   <!-- =================================================================== -->
-  <!-- Fix tabs and line endings on java source files                      -->
+  <!-- Run tests and create Junit Report			                       -->
   <!-- =================================================================== -->
   <target name="runtests" depends="tests" description="run junit tests, create junit report">
 

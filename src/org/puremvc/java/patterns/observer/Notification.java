@@ -55,10 +55,10 @@ public class Notification implements INotification
 
 	// the name of the notification instance
 	// the type of the notification instance
-	private String name = null, type = null;
+	protected String name = null, type = null;
 
 	// the body of the notification instance
-	private Object body = null;
+	protected Object body = null;
 
 	/**
 	 * Constructor.

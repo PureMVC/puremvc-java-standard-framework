@@ -42,10 +42,10 @@ public class Proxy extends Notifier implements IProxy
 {
 
 	// the proxy name
-	private String proxyName = "Proxy";
+	protected String proxyName = "Proxy";
 
 	// the data object
-	private Object data = null;
+	protected Object data = null;
 
 	/**
 	 * Constructor
