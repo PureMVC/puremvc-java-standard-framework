@@ -2,15 +2,14 @@
  
  Adapted from sources of different authors
  
- PureMVC - Copyright(c) 2006-10 Futurescale, Inc., Some rights reserved. 
+ PureMVC - Copyright(c) 2006-12 Futurescale, Inc., Some rights reserved. 
  Your reuse is governed by the Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
-Release Date: 11/11/2010
+Release Date: 1/14/2012
     Platform: Java
      Version: 1
     Revision: 1
-      Author: 
-            : Frederic Saunier <frederic.saunier@puremvc.org>
+     Authors: Frederic Saunier <frederic.saunier@puremvc.org>
             : Donald Stinchfield <donald.stinchfield@puremvc.org>
             : Thomas Schuessler <thomas.schuessler@puremvc.org>
             : Michael Watzek <mwa.tech@spree.de>
