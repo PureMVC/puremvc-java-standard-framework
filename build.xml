@@ -1,0 +1,373 @@
+<project name="puremvc-java" default="all" basedir=".">
+
+  <!-- =================================================================== -->
+  <!-- Initialization target                                               -->
+  <!-- =================================================================== -->
+  <target name="init" depends="buildinfo">
+    <tstamp>
+    	<format property="year" pattern="yyyy" locale="en"/>
+    </tstamp>
+  	
+    <property name="Name" value="PureMVC"/>
+    <property name="name" value="${ant.project.name}"/>
+    <property name="name.tests" value="puremvc-java-tests"/>
+    <property name="version" value="1.1"/>
+
+    <property name="build.compiler" value="modern"/>
+    <property name="debug" value="off"/>
+    <property name="optimize" value="on"/>
+    <property name="deprecation" value="on"/>
+    <property name="packages" value="org.*"/>
+
+    <!-- Define the source directories -->
+    <property name="doc.dir" value="${basedir}/doc"/>
+    <property name="src.dir" value="${basedir}/src"/>
+    <property name="lib.dir" value="${basedir}/lib"/>
+    <property name="tests.dir" value="../PureMVC_Java_SingleCoreTest/"/>
+    <property name="tests.src" value="${tests.dir}/src"/>
+
+    <!-- Define path to required libraries -->
+	<property name="junit" value="junit-4.8.2.jar" />
+	<property name="junit.dir" value="${tests.dir}/lib" />
+	<property name="junit.lib" value="${junit.dir}/${junit}"/>
+  	
+    <!-- Define the source build directories -->
+    <property name="build.dir" value="${basedir}/build"/>
+    <property name="build.lib" value="${build.dir}/lib"/>
+    <property name="build.src" value="${build.dir}/${name}/src"/>
+    <property name="build.dest" value="${build.dir}/${name}/classes"/>
+    <property name="build.doc" value="${basedir}/doc"/>	   	
+    <property name="build.tests" value="${build.dir}/${name.tests}"/>
+    <property name="build.tests.src" value="${build.tests}/src"/>
+    <property name="build.tests.dest" value="${build.tests}/classes"/>
+    <property name="junitresults" value="${build.tests}/junitoutput"/>
+    <property name="codecoverage.dir" value="${build.dir}/coverage"/>
+    <property name="build.dist" value="${build.dir}/dist"/>
+    <property name="source-dist.dir" value="${build.dist}/${name}-${version}-src/"/>
+    <property name="bin-dist.dir" value="${build.dist}/${name}-${version}-bin/"/>    
+    <property name="doc-dist.dir" value="${build.dist}/${name}-${version}-doc/"/>    
+  	
+    
+    <!-- Define the distribution directories -->
+    <property name="dist.dir" value="${basedir}/dist"/>
+    <property name="reports" value="${basedir}/reports"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Help on usage                                                       -->
+  <!-- =================================================================== -->
+  <target name="buildinfo" description="displays build environment information">
+    <echo message=""/>
+    <echo message="Build context for project ${ant.project.name} version ${version} described" />
+    <echo message='below.  For a list of targets use "ant -projecthelp".'/>
+    <echo message=""/>
+    <echo message="Tools:"/>
+    <echo message="      java : version ${ant.java.version}"/>
+    <echo message="      ant  : ${ant.version}"/>
+    <echo message="      junit: ${junit.lib}"/>
+    <echo message=""/>
+    <echo message="Input Directory:"/>
+    <echo message="      source        : ${src.dir}"/>
+    <echo message="      test          : ${tests.dir}"/>
+    <echo message=""/>
+    <echo message="Output Directories:"/>
+    <echo message="      distributions : ${dist.dir}"/>
+    <echo message="      reports       : ${reports}"/>
+    <echo message="      build         : ${build.dir}"/>
+    <echo message="      doc           : ${doc.dir}"/>
+    <echo message=""/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the build directory                                        -->
+  <!-- =================================================================== -->
+  <target name="prepare" depends="init">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.lib}"/>
+    <mkdir dir="${reports}"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the puremvc-java source code                                    -->
+  <!-- =================================================================== -->
+  <target name="prepare-puremvc-java" depends="prepare">
+    <mkdir dir="${build.src}"/>
+    <mkdir dir="${build.dest}"/>
+    <mkdir dir="${build.lib}"/>
+   
+    <copy todir="${build.src}">
+      <fileset dir="${src.dir}"/>
+    </copy>
+         
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Prepares the tests code                                             -->
+  <!-- =================================================================== -->
+  <target name="prepare-tests" depends="prepare">
+    <mkdir dir="${build.tests.src}"/>
+    <mkdir dir="${build.tests.dest}"/>
+
+    <copy todir="${build.tests.src}">
+      <fileset dir="${tests.src}"/>
+    </copy>
+	
+    <copy todir="${build.lib}">
+      <fileset file="${junit.lib}"/>
+    </copy>
+        
+  </target>
+
+
+  <!-- =================================================================== -->
+  <!-- Compiles the puremvc-java source code                                    -->
+  <!-- =================================================================== -->
+  <target name="compile-puremvc-java" depends="prepare-puremvc-java">
+
+    <javac srcdir="${build.src}"
+           destdir="${build.dest}"
+           classpath="${lucene.lib}"
+           debug="${debug}"
+           deprecation="${deprecation}"
+           optimize="${optimize}"/>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Compiles the tests directory                                        -->
+  <!-- =================================================================== -->
+  <target name="compile-tests" depends="prepare-tests, puremvc-java">
+
+    <javac srcdir="${build.tests.src}"
+           destdir="${build.tests.dest}"
+		   classpath="${build.dir}/${name}-${version}.jar;${build.dir}/lib/${junit}"
+           debug="${debug}"
+           deprecation="${deprecation}"
+           optimize="${optimize}"
+	/>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Creates the puremvc-java.jar in ./build                                  -->
+  <!-- =================================================================== -->
+  <target name="puremvc-java" depends="compile-puremvc-java" description="builds puremvc-java.jar">
+
+    <jar jarfile="${build.dir}/${name}-${version}.jar"
+         basedir="${build.dest}"
+         includes="**"/>
+
+    <jar jarfile="${build.dir}/${name}-src.jar"
+  	 basedir="${build.src}"
+  	 includes="**"/>
+
+  </target>
+	
+  <!-- =================================================================== -->
+  <!-- Creates the tests.jar in ./build                                    -->
+  <!-- =================================================================== -->
+  <target name="tests" depends="compile-tests">
+
+    <jar jarfile="${build.dir}/${name.tests}.jar"
+         basedir="${build.tests.dest}"
+         includes="**"/>
+
+    <jar jarfile="${build.dir}/${name.tests}-src.jar"
+  	 basedir="${build.tests.src}"
+  	 includes="**"/>
+
+    <!--manifest="${tests.dir}/puremvc-java/tests/launcher/tests.manifest"-->
+  </target>
+  
+  <!-- =================================================================== -->
+  <!-- Clean environment then build all jars, run tests, create doc.       -->
+  <!-- =================================================================== -->
+  <target name="all" depends="puremvc-java, tests, runtests, doc" 
+          description="clean then build all the jars, runs tests, and creates doc"/>
+
+  <!-- =================================================================== -->
+  <!-- Clean environment then build all jars, run tests, create doc.       -->
+  <!-- =================================================================== -->
+  <target name="dist" depends="clean, source-dist, bin-dist, doc-dist" 
+          description="create distribution files in ${dist.dir}"/>
+
+  <!-- =================================================================== -->
+  <!-- Build build jars in ./build                                         -->
+  <!-- =================================================================== -->
+  <target name="build" depends="puremvc-java" description="builds the system"/>
+
+  <!-- =================================================================== -->
+  <!-- Creates the API documentation in ./doc                              -->
+  <!-- =================================================================== -->
+  <target name="doc" depends="prepare-puremvc-java, prepare-tests" 
+          description="generates puremvc-java API docs">
+
+    <mkdir dir="${build.doc}"/>
+
+    <javadoc packagenames="${packages}"
+             sourcepath="${build.src}"
+    	     classpath="${lucene.lib}"
+             destdir="${build.doc}"
+             author="true"
+             version="true"
+           	 use="true"
+	         breakiterator="yes"
+             splitindex="true"
+             noindex="false"
+             windowtitle="${Name} API Documentation"
+    />
+
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Replace all sequences of 4 spaces in .java files with a tab         -->
+  <!-- =================================================================== -->
+  <target name="addTabsWithLength4" depends="init">
+
+    <fixcrlf 
+         srcdir="${basedir}"
+         tab="add"
+         tablength="4"
+         includes="**/*.java"/>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Replace all tabs in .java files with a sequence of 4 spaces         -->
+  <!-- =================================================================== -->
+  <target name="removeTabsWithLength4" depends="init">
+
+    <fixcrlf 
+         srcdir="${basedir}"
+         tab="remove"
+         tablength="4"
+         includes="**/*.java"/>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Build source distribution in ./dist                                 -->
+  <!-- =================================================================== -->
+  <target name="source-dist" depends="clean-dist">
+
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${source-dist.dir}"/>
+
+    <copy todir="${source-dist.dir}">
+      <fileset dir="${basedir}" excludes="**/.*" />
+    </copy>
+
+    <delete dir="${source-dist.dir}/build"/>
+    <delete dir="${source-dist.dir}/dist"/>
+
+    <fixcrlf srcdir="${source-dist.dir}"
+    	eol="lf" eof="remove"
+    	tablength="4" tab="remove"
+        includes="**/*.sh"
+    />
+
+    <zip zipfile="${dist.dir}/${name}-${version}-src.zip"
+         basedir="${source-dist.dir}"
+         whenempty="create"
+    />
+
+  </target>
+	
+  <!-- =================================================================== -->
+  <!-- Build compiled distribution in ./dist                               -->
+  <!-- =================================================================== -->
+  <target name="bin-dist" depends="clean-dist, build, doc">
+
+    <mkdir dir="${dist.dir}"/>
+    <mkdir dir="${bin-dist.dir}"/>
+
+    <copy todir="${bin-dist.dir}">
+      <fileset dir="${build.dir}">
+		<include name="${name}-${version}.jar"/>
+      </fileset>
+    </copy>
+
+    <zip zipfile="${dist.dir}/${name}-${version}-bin.zip"
+         basedir="${bin-dist.dir}"
+         whenempty="create"
+    />
+
+  </target>
+	
+  <!-- =================================================================== -->
+  <!-- Build doc distribution in ./dist                                    -->
+  <!-- =================================================================== -->
+  <target name="doc-dist" depends="clean-dist, doc">
+
+    <mkdir dir="${dist.dir}"/>
+
+    <zip zipfile="${dist.dir}/${name}-${version}-doc.zip"
+         basedir="${doc.dir}"
+         whenempty="create"
+    />
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Clean restores the distribution to original state                   -->
+  <!-- =================================================================== -->
+  <target name="clean" depends="init, clean-dist" description="remove all build artifacts">
+
+    <delete dir="${dist.dir}"/>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Clean all but directories needed for distribution                   -->
+  <!-- =================================================================== -->
+  <target name="clean-dist" depends="init" description="remove build artifacts">
+
+    <delete dir="${dist.dir}"/>
+    <delete dir="${reports}"/>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Fix tabs and line endings on java source files                      -->
+  <!-- =================================================================== -->
+  <target name="fixtabs" depends="init">
+
+  	<fixcrlf srcdir="${src.dir}" eol="lf" eof="remove"
+  		tablength="4" tab="remove" includes="**/*.java"	/>
+  	<fixcrlf srcdir="${tests.src}" eol="lf" eof="remove"
+  		tablength="4" tab="remove" includes="**/*.java"	/>
+  	<fixcrlf srcdir="${tests.src}" eol="lf" eof="remove"
+  		tablength="4" tab="remove" includes="**/*.java"	/>
+
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Run tests and create Junit Report			                       -->
+  <!-- =================================================================== -->
+  <target name="runtests" depends="tests" description="run junit tests, create junit report">
+
+    <mkdir dir="${junitresults}"/>    
+
+    <junit printsummary="on" showoutput="yes" fork="yes">
+      <formatter type="xml"/>
+      <classpath path="${junit.lib};${build.dest};${build.tests.dest}"/>
+      <batchtest todir="${junitresults}">
+	<fileset dir="${build.tests.src}">
+	  <include name="**/*Test.java"/>
+	</fileset>
+      </batchtest>
+    </junit>
+
+    <junitreport todir="${reports}">
+      <fileset dir="${junitresults}">
+	<include name="TEST-*.xml"/>
+      </fileset>
+      <report format="frames" todir="${reports}/html"/>
+    </junitreport>
+
+  </target>
+
+</project>
+
+<!-- End of file -->
