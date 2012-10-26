@@ -16,7 +16,7 @@ Production - [Version 1.1](https://github.com/PureMVC/puremvc-java-standard-fram
 * [Java](http://en.wikipedia.org/wiki/Java_(programming_language\))
 
 ## License
-* PureMVC Standard Framework for Java (Ported) - Copyright(c) 2010-2012 Frederic Saunier
+* PureMVC Standard Framework for Java (Ported) - Copyright © 2010-2012 Frederic Saunier
 * PureMVC - Copyright © 2006-2012 Futurescale, Inc.
 * All rights reserved.
 
