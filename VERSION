@@ -1,9 +1,4 @@
- PureMVC Java port by Frederic Saunier <frederic.saunier@puremvc.org>
- 
- Adapted from sources of different authors
- 
- PureMVC - Copyright(c) 2006-12 Futurescale, Inc., Some rights reserved. 
- Your reuse is governed by the Creative Commons Attribution 3.0 License
+PureMVC Standard Framework for Java (Ported)
 --------------------------------------------------------------------------
 Release Date: 1/14/2012
     Platform: Java
@@ -15,7 +10,6 @@ Release Date: 1/14/2012
             : Michael Watzek <mwa.tech@spree.de>
             : Philipp Hemker <phe@startext.de>
             : Jan Grimmer <Jan.Grimmer@cimt-ag.de>
-     License: Creative Commons Attribution 3.0 License
 --------------------------------------------------------------------------
 1.1 - Now onRemove method of Proxy classes is called as it seems it has been
       forgotten in 1.0. 
