@@ -11,6 +11,7 @@
 */
 package org.puremvc.java.patterns.observer;
 
+import org.puremvc.java.interfaces.INotifier;
 import org.puremvc.java.patterns.facade.Facade;
 
 /**
@@ -41,7 +42,7 @@ import org.puremvc.java.patterns.facade.Facade;
  * @see org.puremvc.java.patterns.command.SimpleCommand SimpleCommand
  * @see org.puremvc.java.patterns.command.MacroCommand MacroCommand
  */
-public class Notifier
+public class Notifier implements INotifier
 {
 	// The Multiton Key for this app
 	/**
