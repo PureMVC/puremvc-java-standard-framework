@@ -1,34 +1,10 @@
-PureMVC Standard Framework for Java (Ported) - Legacy
+PureMVC Standard Framework for Java
 --------------------------------------------------------------------------
-Release Date: 03/07/2019
+Release Date: 03/07/19
     Platform: Java
-     Version: 1
-    Revision: 2
-     Authors: Frederic Saunier <frederic.saunier@puremvc.org>
-            : Donald Stinchfield <donald.stinchfield@puremvc.org>
-            : Thomas Schuessler <thomas.schuessler@puremvc.org>
-            : Michael Watzek <mwa.tech@spree.de>
-            : Philipp Hemker <phe@startext.de>
-            : Jan Grimmer <Jan.Grimmer@cimt-ag.de>
+     Version: 2
+    Revision: 0
+       Minor: 0
+      Author: Saad Shams <saad.shams@puremvc.org>
 --------------------------------------------------------------------------
-1.2 - Moved to legacy. A brand new implementation of standard, multicore
-      and pipes has been built which are more closely in alignment with
-      the reference implementation.
-
-1.1 - Now onRemove method of Proxy classes is called as it seems it has been
-      forgotten in 1.0. 
-
-1.0 - The framework has been adapted from the multicore version. It fixes the
-      lack off onRegister, onRemove methods of Mediators and Proxy classes and
-      improves GWT compatibility. It also has been tested successfully against
-      Android 2.2. 
-
-0.3 - Junit tests from Futurescale have been added.  build.xml file was
-      refactored to make easier to build modules.  This is mostly an
-      administrative release
-      
-0.2 - Current version is partially compatible with AS3 version 2.0.1, 
- 	  still needs onRegister/onRemove in Mediators and Proxies, and 
- 	  a few other things. Added JavaDocs - CLH
-
-0.1 - Created initial file structure and added license and version files - CLH
+2.0 - Brand new implementation of ported code, equivalent to AS3 Standard Version 2.0.4.
