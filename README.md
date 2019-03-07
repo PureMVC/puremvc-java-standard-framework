@@ -1,7 +1,8 @@
-## [PureMVC](http://puremvc.github.com/) Java Standard Framework
+## [PureMVC](http://puremvc.github.com/) Java Standard Framework - LEGACY IMPLEMENTATION
+### For the current implementation go [here](https://github.com/PureMVC/puremvc-java-standard-framework/wiki)
 PureMVC is a lightweight framework for creating applications based upon the classic [Model-View-Controller](http://en.wikipedia.org/wiki/Model-view-controller) design meta-pattern. This is a Java port of the [AS3 reference implementation of the Standard Version](https://github.com/PureMVC/puremvc-as3-standard-framework/wiki). It does not support modular programming since it uses [Singleton](http://en.wikipedia.org/wiki/Singleton_pattern)s as Core actors rather than the [Multiton](http://en.wikipedia.org/wiki/Multiton)s used in the [MultiCore](https://github.com/PureMVC/puremvc-java-multicore-framework/wiki/) Version.
 
-* [API Docs](http://puremvc.org/pages/docs/Java/standard)
+* [API Docs](http://puremvc.org/pages/docs/Java/legacy/standard)
 * [Discussion](http://forums.puremvc.org/index.php?board=59.0)
 * [Unit Tests](https://github.com/PureMVC/puremvc-java-standard-unittests/wiki)
 * [Overview Presentation](http://puremvc.tv/#P100)
@@ -10,13 +11,13 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * [Demo: J2ME Login](https://github.com/PureMVC/puremvc-java-demo-j2me-login/wiki)
 
 ## Status
-Production - [Version 1.1](https://github.com/PureMVC/puremvc-java-standard-framework/blob/master/VERSION)
+Legacy - [Version 1.2](https://github.com/PureMVC/puremvc-java-standard-framework/blob/master/VERSION)
 
 ## Platforms / Technologies
 * [Java](http://en.wikipedia.org/wiki/Java_\(programming_language\))
 
 ## License
-* PureMVC Standard Framework for Java (Ported) - Copyright © 2010-2012 Frederic Saunier
+* PureMVC Standard Framework for Java (Ported) / Legacy - Copyright © 2010-2012 Frederic Saunier
 * PureMVC - Copyright © 2006-2012 Futurescale, Inc.
 * All rights reserved.
 

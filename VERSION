@@ -1,9 +1,9 @@
-PureMVC Standard Framework for Java (Ported)
+PureMVC Standard Framework for Java (Ported) - Legacy
 --------------------------------------------------------------------------
-Release Date: 1/14/2012
+Release Date: 03/07/2019
     Platform: Java
      Version: 1
-    Revision: 1
+    Revision: 2
      Authors: Frederic Saunier <frederic.saunier@puremvc.org>
             : Donald Stinchfield <donald.stinchfield@puremvc.org>
             : Thomas Schuessler <thomas.schuessler@puremvc.org>
@@ -11,6 +11,10 @@ Release Date: 1/14/2012
             : Philipp Hemker <phe@startext.de>
             : Jan Grimmer <Jan.Grimmer@cimt-ag.de>
 --------------------------------------------------------------------------
+1.2 - Moved to legacy. A brand new implementation of standard, multicore
+      and pipes has been built which are more closely in alignment with
+      the reference implementation.
+
 1.1 - Now onRemove method of Proxy classes is called as it seems it has been
       forgotten in 1.0. 
 
