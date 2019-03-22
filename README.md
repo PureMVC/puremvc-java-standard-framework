@@ -8,12 +8,22 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * [Standard Version Overview Presentation](http://puremvc.tv/#P100)
 * [Legacy Implementation](https://github.com/PureMVC/puremvc-java-standard-framework/tree/1.2)
 
+## Maven Installation
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.puremvc</groupId>
+        <artifactId>puremvc</artifactId>
+    </dependency>
+</dependencies>
+```
+
 ## Platforms / Technologies
 * [Java](https://en.wikipedia.org/wiki/Java_(programming_language))
 * [Android](https://en.wikipedia.org/wiki/Android_(operating_system))
 
 ## Status
-Production - [Version 2.0](https://github.com/PureMVC/puremvc-java-standard-framework/blob/master/VERSION)
+Production - [Version 2.1](https://github.com/PureMVC/puremvc-java-standard-framework/blob/master/VERSION)
 
 ## License
 * PureMVC Standard Framework for Java - Copyright © 2019 [Saad Shams](https://www.linkedin.com/in/muizz/)
