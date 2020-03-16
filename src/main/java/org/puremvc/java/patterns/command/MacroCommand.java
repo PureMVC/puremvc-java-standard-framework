@@ -87,10 +87,10 @@ public class MacroCommand extends Notifier implements ICommand {
      * <P>The <i>SubCommands</i> will be called in First In/First Out (FIFO)
      * order.</P>
      *
-     * @param commandSupplier a reference to the commandSupplier of the <code>ICommand</code>.
+     * @param factory a reference to the factory of the <code>ICommand</code>.
      */
-    protected void addSubCommand(Supplier<ICommand> commandSupplier) {
-        subCommands.add(commandSupplier);
+    protected void addSubCommand(Supplier<ICommand> factory) {
+        subCommands.add(factory);
     }
 
     /**
@@ -102,7 +102,8 @@ public class MacroCommand extends Notifier implements ICommand {
      * @param notification the <code>INotification</code> object to be passsed to each <i>SubCommand</i>.
      */
     public void execute(INotification notification) {
-        for(Supplier<ICommand> commandSupplier : subCommands) {
+        while(!subCommands.isEmpty()) {
+            Supplier<ICommand> commandSupplier = subCommands.remove(0);
             ICommand command = commandSupplier.get();
             command.execute(notification);
         }

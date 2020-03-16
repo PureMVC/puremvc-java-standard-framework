@@ -109,11 +109,11 @@ public class Controller implements IController {
     /**
      * <P><code>Controller</code> Singleton Factory method.</P>
      *
-     * @param controllerSupplier controller supplier function
+     * @param factory controller supplier function
      * @return the Singleton instance of <code>Controller</code>
      */
-    public synchronized static IController getInstance(Supplier<IController> controllerSupplier) {
-        if(instance == null) instance = controllerSupplier.get();
+    public synchronized static IController getInstance(Supplier<IController> factory) {
+        if(instance == null) instance = factory.get();
         return instance;
     }
 

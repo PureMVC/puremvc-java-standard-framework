@@ -84,7 +84,7 @@ public class FacadeTest {
         // Create the Facade, register the FacadeTestCommand to
         // handle 'FacadeTest' events
         IFacade facade = Facade.getInstance(() -> new Facade());
-        facade.registerCommand("FacadeTestKey3", () -> new FacadeTestCommand());
+        facade.registerCommand("FacadeTestNote", () -> new FacadeTestCommand());
         facade.removeCommand("FacadeTestNote");
 
         // Send notification. The Command associated with the event

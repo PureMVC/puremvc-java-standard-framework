@@ -75,11 +75,11 @@ public class View implements IView {
     /**
      * <P>View Singleton Factory method.</P>
      *
-     * @param viewSupplier view supplier function
+     * @param factory view supplier function
      * @return the Singleton instance of <code>View</code>
      */
-    public synchronized static IView getInstance(Supplier<IView> viewSupplier) {
-        if(instance == null) instance = viewSupplier.get();
+    public synchronized static IView getInstance(Supplier<IView> factory) {
+        if(instance == null) instance = factory.get();
         return instance;
     }
 

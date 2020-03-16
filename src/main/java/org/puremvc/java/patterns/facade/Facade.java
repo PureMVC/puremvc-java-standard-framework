@@ -181,11 +181,11 @@ public class Facade implements IFacade {
     /**
      * <P>Facade Singleton Factory method</P>
      *
-     * @param facadeSupplier facade Supplier Function
+     * @param factory facade Supplier Function
      * @return the Singleton instance of the Facade
      */
-    public synchronized static IFacade getInstance(Supplier<IFacade> facadeSupplier) {
-        if(instance == null) instance = facadeSupplier.get();
+    public synchronized static IFacade getInstance(Supplier<IFacade> factory) {
+        if(instance == null) instance = factory.get();
         return instance;
     }
 

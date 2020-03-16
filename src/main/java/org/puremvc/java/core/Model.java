@@ -81,11 +81,11 @@ public class Model implements IModel {
     /**
      * <P><code>Model</code> Singleton Factory method.</P>
      *
-     * @param modelSupplier model supplier function
+     * @param factory model supplier function
      * @return the Singleton instance
      */
-    public synchronized static IModel getInstance(Supplier<IModel> modelSupplier) {
-        if(instance == null) instance = modelSupplier.get();
+    public synchronized static IModel getInstance(Supplier<IModel> factory) {
+        if(instance == null) instance = factory.get();
         return instance;
     }
 

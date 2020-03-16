@@ -223,7 +223,7 @@ public class ViewTest {
         view.removeMediator(ViewTestMediator.NAME);
 
         // test that retrieving it now returns null
-        Assertions.assertNull(view.removeMediator(ViewTestMediator.NAME), "Expecting view.retrieveMediator( ViewTestMediator.NAME ) == null");
+        Assertions.assertNull(view.retrieveMediator(ViewTestMediator.NAME), "Expecting view.retrieveMediator( ViewTestMediator.NAME ) == null");
     }
 
     /**
